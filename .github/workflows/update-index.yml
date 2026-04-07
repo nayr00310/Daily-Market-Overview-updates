@@ -10,18 +10,18 @@ jobs:
     permissions:
       contents: write
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true      # ← 加這行，立即用 Node 24
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0        # ← 加這行！取完整 git history
+          fetch-depth: 0
 
       - name: Generate index.html
         run: python3 scripts/generate_index.py
 
-            - name: Commit and push
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
