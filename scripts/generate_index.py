@@ -2,26 +2,23 @@ import glob
 import subprocess
 from datetime import datetime, timezone, timedelta
 
-# 台灣時區 UTC+8
 TW_TZ = timezone(timedelta(hours=8))
 
-# 掃描所有 HTML（排除 index.html）
 all_files = [f for f in glob.glob("*.html") if f != "index.html"]
 
-def get_commit_time(filename):
+def get_first_commit_time(filename):
+    # 用 --follow --diff-filter=A 取得檔案「第一次加入」的時間
     result = subprocess.run(
-        ["git", "log", "-1", "--format=%ct", filename],
+        ["git", "log", "--follow", "--diff-filter=A", "--format=%ct", filename],
         capture_output=True, text=True, encoding="utf-8"
     )
     ts = result.stdout.strip()
     return int(ts) if ts else 0
 
-# 按 commit 時間排序（最新在前）
 files_with_time = []
 for f in all_files:
-    ts = get_commit_time(f)
+    ts = get_first_commit_time(f)
     if ts:
-        # 轉換為台灣時間
         dt = datetime.fromtimestamp(ts, tz=TW_TZ)
     else:
         dt = datetime.min.replace(tzinfo=TW_TZ)
@@ -29,7 +26,6 @@ for f in all_files:
 
 files_with_time.sort(key=lambda x: x[1], reverse=True)
 
-# 生成列表
 items = ""
 for f, dt in files_with_time:
     name = f.replace(".html", "")
