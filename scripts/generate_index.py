@@ -1,46 +1,35 @@
 import glob
-import re
+import os
+import subprocess
 from datetime import datetime
-from collections import defaultdict
 
-# 掃描兩種格式
-base_files = glob.glob("[0-9][0-9][A-Z][a-z][a-z][0-9][0-9][0-9][0-9].html")
-extra_files = glob.glob("[0-9][0-9][A-Z][a-z][a-z][0-9][0-9][0-9][0-9]-[0-9]*.html")
-all_files = base_files + extra_files
+# 掃描所有 HTML（排除 index.html 自己）
+all_files = [f for f in glob.glob("*.html") if f != "index.html"]
 
-# 按日期分組，用 regex 正確提取日期部分
-groups = defaultdict(list)
+# 用 git log 取得每個檔案的最新 commit 時間
+def get_commit_time(filename):
+    result = subprocess.run(
+        ["git", "log", "-1", "--format=%ct", filename],
+        capture_output=True, text=True
+    )
+    ts = result.stdout.strip()
+    return int(ts) if ts else 0
+
+# 按 commit 時間排序（最新在前）
+files_with_time = []
 for f in all_files:
-    match = re.match(r"(\d{2}[A-Za-z]{3}\d{4})", f)  # 只取開頭日期
-    if match:
-        date_key = match.group(1)
-        groups[date_key].append(f)
+    ts = get_commit_time(f)
+    dt = datetime.fromtimestamp(ts) if ts else datetime.min
+    files_with_time.append((f, dt))
 
-# 按日期排序（最新在前）
-sorted_dates = sorted(
-    groups.keys(),
-    key=lambda d: datetime.strptime(d, "%d%b%Y"),
-    reverse=True
-)
+files_with_time.sort(key=lambda x: x[1], reverse=True)
 
+# 生成列表
 items = ""
-for date_key in sorted_dates:
-    try:
-        dt = datetime.strptime(date_key, "%d%b%Y")
-        date_display = dt.strftime("%A, %B %-d, %Y")
-    except:
-        date_display = date_key
-
-    # 同一天的檔案按名稱排序（確保 07Apr2026.html 在前，-02 在後）
-    files_in_day = sorted(groups[date_key])
-
-    if len(files_in_day) == 1:
-        f = files_in_day[0]
-        items += f'        <li><a href="{f}">📊 {date_display}</a></li>\n'
-    else:
-        for i, f in enumerate(files_in_day, 1):
-            label = f"📊 {date_display}" if i == 1 else f"📊 {date_display} — Update {i}"
-            items += f'        <li><a href="{f}">{label}</a></li>\n'
+for f, dt in files_with_time:
+    name = f.replace(".html", "")
+    time_display = dt.strftime("%Y-%m-%d %H:%M") if dt != datetime.min else ""
+    items += f'        <li><a href="{f}"><span class="name">📄 {name}</span><span class="time">{time_display}</span></a></li>\n'
 
 html = f"""<!DOCTYPE html>
 <html lang="zh-Hant">
@@ -51,7 +40,7 @@ html = f"""<!DOCTYPE html>
   <style>
     body {{
       font-family: -apple-system, sans-serif;
-      max-width: 640px;
+      max-width: 680px;
       margin: 48px auto;
       padding: 0 24px;
       background: #f9f9f9;
@@ -67,24 +56,32 @@ html = f"""<!DOCTYPE html>
       margin-bottom: 10px;
     }}
     a {{
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 14px 18px;
       text-decoration: none;
       color: #0969da;
       font-size: 1rem;
     }}
     a:hover {{ background: #f0f7ff; border-radius: 8px; }}
+    .time {{
+      font-size: 0.8rem;
+      color: #999;
+      white-space: nowrap;
+      margin-left: 12px;
+    }}
   </style>
 </head>
 <body>
   <h1>📈 Daily Market Analysis</h1>
-  <p class="sub">點擊日期查看當天分析報告</p>
+  <p class="sub">最新上傳排列在最上方</p>
   <ul>
 {items}  </ul>
 </body>
 </html>"""
 
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html)
+with open("index.html", "w", encoding="utf-8") as out:
+    out.write(html)
 
-print(f"Generated index.html with {len(all_files)} files across {len(sorted_dates)} days.")
+print(f"Generated index.html with {len(files_with_time)} files.")
