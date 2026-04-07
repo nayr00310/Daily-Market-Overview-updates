@@ -1,16 +1,17 @@
 import glob
-import os
 import subprocess
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
-# 掃描所有 HTML（排除 index.html 自己）
+# 台灣時區 UTC+8
+TW_TZ = timezone(timedelta(hours=8))
+
+# 掃描所有 HTML（排除 index.html）
 all_files = [f for f in glob.glob("*.html") if f != "index.html"]
 
-# 用 git log 取得每個檔案的最新 commit 時間
 def get_commit_time(filename):
     result = subprocess.run(
         ["git", "log", "-1", "--format=%ct", filename],
-        capture_output=True, text=True, encoding="utf-8"  # ← 確保有這個
+        capture_output=True, text=True, encoding="utf-8"
     )
     ts = result.stdout.strip()
     return int(ts) if ts else 0
@@ -19,7 +20,11 @@ def get_commit_time(filename):
 files_with_time = []
 for f in all_files:
     ts = get_commit_time(f)
-    dt = datetime.fromtimestamp(ts) if ts else datetime.min
+    if ts:
+        # 轉換為台灣時間
+        dt = datetime.fromtimestamp(ts, tz=TW_TZ)
+    else:
+        dt = datetime.min.replace(tzinfo=TW_TZ)
     files_with_time.append((f, dt))
 
 files_with_time.sort(key=lambda x: x[1], reverse=True)
@@ -28,7 +33,7 @@ files_with_time.sort(key=lambda x: x[1], reverse=True)
 items = ""
 for f, dt in files_with_time:
     name = f.replace(".html", "")
-    time_display = dt.strftime("%Y-%m-%d %H:%M") if dt != datetime.min else ""
+    time_display = dt.strftime("%Y-%m-%d %H:%M (台灣)")
     items += f'        <li><a href="{f}"><span class="name">📄 {name}</span><span class="time">{time_display}</span></a></li>\n'
 
 html = f"""<!DOCTYPE html>
