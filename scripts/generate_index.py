@@ -10,7 +10,7 @@ all_files = [f for f in glob.glob("*.html") if f != "index.html"]
 def get_commit_time(filename):
     result = subprocess.run(
         ["git", "log", "-1", "--format=%ct", filename],
-        capture_output=True, text=True
+        capture_output=True, text=True, encoding="utf-8"  # ← 確保有這個
     )
     ts = result.stdout.strip()
     return int(ts) if ts else 0
