@@ -1,27 +1,49 @@
 import glob
 import subprocess
+import json
+import os
 from datetime import datetime, timezone, timedelta
 
 TW_TZ = timezone(timedelta(hours=8))
+TIMESTAMP_FILE = "scripts/timestamps.json"
+
+# 載入已記錄的時間
+if os.path.exists(TIMESTAMP_FILE):
+    with open(TIMESTAMP_FILE, "r", encoding="utf-8") as f:
+        timestamps = json.load(f)
+else:
+    timestamps = {}
 
 all_files = [f for f in glob.glob("*.html") if f != "index.html"]
 
 def get_first_commit_time(filename):
-    # 用 --follow --diff-filter=A 取得檔案「第一次加入」的時間
     result = subprocess.run(
         ["git", "log", "--follow", "--diff-filter=A", "--format=%ct", filename],
         capture_output=True, text=True, encoding="utf-8"
     )
-    ts = result.stdout.strip()
-    return int(ts) if ts else 0
+    lines = [l.strip() for l in result.stdout.strip().splitlines() if l.strip()]
+    # 取最舊那筆（最後一行）
+    return int(lines[-1]) if lines else 0
 
+# 只對新檔案記錄時間，舊的不動
+changed = False
+for f in all_files:
+    if f not in timestamps:
+        ts = get_first_commit_time(f)
+        if ts:
+            timestamps[f] = ts
+            changed = True
+
+# 儲存更新的時間記錄
+if changed:
+    with open(TIMESTAMP_FILE, "w", encoding="utf-8") as f:
+        json.dump(timestamps, f, ensure_ascii=False, indent=2)
+
+# 生成列表
 files_with_time = []
 for f in all_files:
-    ts = get_first_commit_time(f)
-    if ts:
-        dt = datetime.fromtimestamp(ts, tz=TW_TZ)
-    else:
-        dt = datetime.min.replace(tzinfo=TW_TZ)
+    ts = timestamps.get(f, 0)
+    dt = datetime.fromtimestamp(ts, tz=TW_TZ) if ts else datetime.min.replace(tzinfo=TW_TZ)
     files_with_time.append((f, dt))
 
 files_with_time.sort(key=lambda x: x[1], reverse=True)
