@@ -1,20 +1,27 @@
 import glob
+import re
 from datetime import datetime
 from collections import defaultdict
 
 # 掃描兩種格式
 base_files = glob.glob("[0-9][0-9][A-Z][a-z][a-z][0-9][0-9][0-9][0-9].html")
 extra_files = glob.glob("[0-9][0-9][A-Z][a-z][a-z][0-9][0-9][0-9][0-9]-[0-9]*.html")
-all_files = sorted(base_files + extra_files, reverse=True)
+all_files = base_files + extra_files
 
-# 按日期分組
+# 按日期分組，用 regex 正確提取日期部分
 groups = defaultdict(list)
 for f in all_files:
-    date_part = f.split("-")[0].replace(".html", "")  # 取 07Apr2026
-    groups[date_part].append(f)
+    match = re.match(r"(\d{2}[A-Za-z]{3}\d{4})", f)  # 只取開頭日期
+    if match:
+        date_key = match.group(1)
+        groups[date_key].append(f)
 
 # 按日期排序（最新在前）
-sorted_dates = sorted(groups.keys(), key=lambda d: datetime.strptime(d, "%d%b%Y"), reverse=True)
+sorted_dates = sorted(
+    groups.keys(),
+    key=lambda d: datetime.strptime(d, "%d%b%Y"),
+    reverse=True
+)
 
 items = ""
 for date_key in sorted_dates:
@@ -24,14 +31,13 @@ for date_key in sorted_dates:
     except:
         date_display = date_key
 
-    files_in_day = sorted(groups[date_key])  # 同一天的按序排
+    # 同一天的檔案按名稱排序（確保 07Apr2026.html 在前，-02 在後）
+    files_in_day = sorted(groups[date_key])
 
     if len(files_in_day) == 1:
-        # 只有一個 file，直接一行
         f = files_in_day[0]
         items += f'        <li><a href="{f}">📊 {date_display}</a></li>\n'
     else:
-        # 多個 file，顯示日期 + 編號
         for i, f in enumerate(files_in_day, 1):
             label = f"📊 {date_display}" if i == 1 else f"📊 {date_display} — Update {i}"
             items += f'        <li><a href="{f}">{label}</a></li>\n'
