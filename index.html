@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: -apple-system, sans-serif;
-      max-width: 640px;
+      max-width: 680px;
       margin: 48px auto;
       padding: 0 24px;
       background: #f9f9f9;
@@ -23,23 +23,31 @@
       margin-bottom: 10px;
     }
     a {
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 14px 18px;
       text-decoration: none;
       color: #0969da;
       font-size: 1rem;
     }
     a:hover { background: #f0f7ff; border-radius: 8px; }
+    .time {
+      font-size: 0.8rem;
+      color: #999;
+      white-space: nowrap;
+      margin-left: 12px;
+    }
   </style>
 </head>
 <body>
   <h1>📈 Daily Market Analysis</h1>
-  <p class="sub">點擊日期查看當天分析報告</p>
+  <p class="sub">最新上傳排列在最上方</p>
   <ul>
-        <li><a href="07Apr2026-02.html">📊 Tuesday, April 7, 2026</a></li>
-        <li><a href="07Apr2026-03.html">📊 Tuesday, April 7, 2026 — Update 2</a></li>
-        <li><a href="07Apr2026.html">📊 Tuesday, April 7, 2026 — Update 3</a></li>
-        <li><a href="06Apr2026.html">📊 Monday, April 6, 2026</a></li>
+        <li><a href="07Apr2026.html"><span class="name">📄 07Apr2026</span><span class="time">2026-04-07 14:24</span></a></li>
+        <li><a href="07Apr2026-02.html"><span class="name">📄 07Apr2026-02</span><span class="time">2026-04-07 14:24</span></a></li>
+        <li><a href="06Apr2026.html"><span class="name">📄 06Apr2026</span><span class="time">2026-04-07 14:24</span></a></li>
+        <li><a href="07Apr2026-03.html"><span class="name">📄 07Apr2026-03</span><span class="time">2026-04-07 14:24</span></a></li>
   </ul>
 </body>
 </html>
