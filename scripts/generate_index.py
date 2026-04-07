@@ -1,22 +1,40 @@
 import glob
 from datetime import datetime
+from collections import defaultdict
 
-files = sorted(
-    glob.glob("[0-9][0-9][A-Z][a-z][a-z][0-9][0-9][0-9][0-9].html"),
-    reverse=True
-)
+# 掃描兩種格式
+base_files = glob.glob("[0-9][0-9][A-Z][a-z][a-z][0-9][0-9][0-9][0-9].html")
+extra_files = glob.glob("[0-9][0-9][A-Z][a-z][a-z][0-9][0-9][0-9][0-9]-[0-9]*.html")
+all_files = sorted(base_files + extra_files, reverse=True)
+
+# 按日期分組
+groups = defaultdict(list)
+for f in all_files:
+    date_part = f.split("-")[0].replace(".html", "")  # 取 07Apr2026
+    groups[date_part].append(f)
+
+# 按日期排序（最新在前）
+sorted_dates = sorted(groups.keys(), key=lambda d: datetime.strptime(d, "%d%b%Y"), reverse=True)
 
 items = ""
-for f in files:
-    name = f.replace(".html", "")
+for date_key in sorted_dates:
     try:
-        # 把 07Apr2026 轉成 "Tuesday, April 7, 2026"
-        dt = datetime.strptime(name, "%d%b%Y")
-        display = dt.strftime("%A, %B %-d, %Y")
+        dt = datetime.strptime(date_key, "%d%b%Y")
+        date_display = dt.strftime("%A, %B %-d, %Y")
     except:
-        display = name
+        date_display = date_key
 
-    items += f'        <li><a href="{f}">📊 {display}</a></li>\n'
+    files_in_day = sorted(groups[date_key])  # 同一天的按序排
+
+    if len(files_in_day) == 1:
+        # 只有一個 file，直接一行
+        f = files_in_day[0]
+        items += f'        <li><a href="{f}">📊 {date_display}</a></li>\n'
+    else:
+        # 多個 file，顯示日期 + 編號
+        for i, f in enumerate(files_in_day, 1):
+            label = f"📊 {date_display}" if i == 1 else f"📊 {date_display} — Update {i}"
+            items += f'        <li><a href="{f}">{label}</a></li>\n'
 
 html = f"""<!DOCTYPE html>
 <html lang="zh-Hant">
@@ -63,4 +81,4 @@ html = f"""<!DOCTYPE html>
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(html)
 
-print(f"Generated index.html with {len(files)} entries.")
+print(f"Generated index.html with {len(all_files)} files across {len(sorted_dates)} days.")
