@@ -1,5 +1,4 @@
 import glob
-import subprocess
 import json
 import os
 from datetime import datetime, timezone, timedelta
@@ -16,25 +15,16 @@ else:
 
 all_files = [f for f in glob.glob("*.html") if f != "index.html"]
 
-def get_first_commit_time(filename):
-    result = subprocess.run(
-        ["git", "log", "--follow", "--diff-filter=A", "--format=%ct", filename],
-        capture_output=True, text=True, encoding="utf-8"
-    )
-    lines = [l.strip() for l in result.stdout.strip().splitlines() if l.strip()]
-    # 取最舊那筆（最後一行）
-    return int(lines[-1]) if lines else 0
-
-# 只對新檔案記錄時間，舊的不動
+# 新檔案用當下時間記錄，舊的完全不動
 changed = False
 for f in all_files:
     if f not in timestamps:
-        ts = get_first_commit_time(f)
-        if ts:
-            timestamps[f] = ts
-            changed = True
+        now_ts = int(datetime.now(tz=TW_TZ).timestamp())
+        timestamps[f] = now_ts
+        print(f"New file detected: {f} → {now_ts}")
+        changed = True
 
-# 儲存更新的時間記錄
+# 儲存
 if changed:
     with open(TIMESTAMP_FILE, "w", encoding="utf-8") as f:
         json.dump(timestamps, f, ensure_ascii=False, indent=2)
