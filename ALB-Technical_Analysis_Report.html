@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALB-Technical Analysis Report.md</title>
+  <style>
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css");
+
+  body {
+    font-family: Georgia, Cambria, serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #373D49;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  a { color: #35D7BB; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    font-family: "Ubuntu Mono", Monaco, monospace;
+    background: #F5F7FA;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  pre {
+    background: #F5F7FA;
+    padding: 1em;
+    border-radius: 3px;
+    overflow-x: auto;
+  }
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    color: #333;
+  }
+  pre code { background: none; padding: 0; }
+  blockquote {
+    border-left: 3px solid #A0AABF;
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    color: #666;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #E8E8E8;
+    padding: 0.5em;
+    text-align: left;
+  }
+  th {
+    background: #F5F7FA;
+    font-weight: 600;
+  }
+  #preview .table {
+    width: auto;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+</style>
+</head>
+<body id="preview">
+<h1 class="code-line has-line-data" data-line-start="0" data-line-end="1"><a id="ALBtickerNYSEALB_Albemarle_Corporation_Technical_Analysis_Report_0"></a><a href="#ticker:NYSE:ALB">ALB</a> (Albemarle Corporation) — Technical Analysis Report</h1>
+<h2 class="code-line has-line-data" data-line-start="2" data-line-end="3"><a id="Price_Action_Summary_2"></a>📊 Price Action Summary</h2>
+<p class="has-line-data" data-line-start="3" data-line-end="7"><strong>Current Price:</strong> $177.44 | <strong>Daily Change:</strong> +2.25% | <strong>Volume:</strong> 1.62M<br>
+<strong>Latest Bar (4/8/26):</strong> O=179.44 H=180.71 L=174.14 C=177.44<br>
+<strong>52-Week Range:</strong> $50.85 - <strong>$206.00</strong> | <strong>Market Cap:</strong> $20.9B<br>
+<strong>Distance from ATH:</strong> -13.9% (potential re-accumulation zone)</p>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="10" data-line-end="11"><a id="Trend_Direction_Strong_Bullish_Alignment_10"></a>🎯 Trend Direction — Strong Bullish Alignment</h2>
+<p class="has-line-data" data-line-start="12" data-line-end="13">ALB is exhibiting a <strong>powerful stage 2 uptrend</strong> with near-perfect moving average alignment. The stock has rallied <strong>249% from its 2025 lows</strong> and is currently in a <strong>healthy pullback/consolidation</strong> after hitting $206 highs.</p>
+<h3 class="code-line has-line-data" data-line-start="14" data-line-end="15"><a id="Moving_Averages_Analysis_14"></a>Moving Averages Analysis</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>MA</th>
+<th>Value</th>
+<th>Distance from Price</th>
+<th>Signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EMA 10</strong></td>
+<td>$175.27</td>
+<td>+1.2%</td>
+<td>Immediate support</td>
+</tr>
+<tr>
+<td><strong>EMA 20</strong></td>
+<td>$173.47</td>
+<td>+2.3%</td>
+<td>Short-term trend</td>
+</tr>
+<tr>
+<td><strong>SMA 50</strong></td>
+<td>$171.71</td>
+<td>+3.3%</td>
+<td>Institutional trend</td>
+</tr>
+<tr>
+<td><strong>EMA 50</strong></td>
+<td>$168.58</td>
+<td>+5.3%</td>
+<td>Intermediate support</td>
+</tr>
+<tr>
+<td><strong>SMA 100</strong></td>
+<td>$157.19</td>
+<td>+12.9%</td>
+<td>Major support</td>
+</tr>
+<tr>
+<td><strong>EMA 100</strong></td>
+<td>$154.61</td>
+<td>+14.8%</td>
+<td>Bull market floor</td>
+</tr>
+<tr>
+<td><strong>EMA 200</strong></td>
+<td>$132.70</td>
+<td>+33.7%</td>
+<td>Long-term trend</td>
+</tr>
+</tbody>
+</table>
+<p class="has-line-data" data-line-start="26" data-line-end="27"><strong>Assessment:</strong> <strong>PERFECT BULLISH ALIGNMENT</strong> (10/20/50/100/200 all stacked). Price has pulled back to test the <strong>50-day SMA ($171.71)</strong> area — a classic “railroad tracks” retest in a healthy uptrend.</p>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="30" data-line-end="31"><a id="Key_Support_Resistance_Levels_30"></a>📐 Key Support &amp; Resistance Levels</h2>
+<h3 class="code-line has-line-data" data-line-start="32" data-line-end="33"><a id="Resistance_Zones_Upside_Targets_32"></a>Resistance Zones (Upside Targets)</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Level</th>
+<th>Price</th>
+<th>Significance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>R1</strong></td>
+<td><strong>$180.71</strong></td>
+<td><strong>Today’s high</strong> — immediate ceiling</td>
+</tr>
+<tr>
+<td><strong>R2</strong></td>
+<td><strong>$186.40</strong></td>
+<td>Fib 61.8% / Golden Pocket top</td>
+</tr>
+<tr>
+<td><strong>R3</strong></td>
+<td><strong>$188.04</strong></td>
+<td>Golden Pocket zone</td>
+</tr>
+<tr>
+<td><strong>R4</strong></td>
+<td><strong>$195.69</strong></td>
+<td>Fib 78.6% / Prior swing high</td>
+</tr>
+<tr>
+<td><strong>R5</strong></td>
+<td><strong>$206.00</strong></td>
+<td><strong>52-week high / ATH</strong> — major psychological</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="41" data-line-end="42"><a id="Support_Zones_Downside_Protection_41"></a>Support Zones (Downside Protection)</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Level</th>
+<th>Price</th>
+<th>Significance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S1</strong></td>
+<td><strong>$174.14</strong></td>
+<td><strong>Today’s low</strong> — immediate support</td>
+</tr>
+<tr>
+<td><strong>S2</strong></td>
+<td><strong>$174.29</strong></td>
+<td><strong>Fib 38.2%</strong> — key retracement</td>
+</tr>
+<tr>
+<td><strong>S3</strong></td>
+<td><strong>$171.71</strong></td>
+<td><strong>50 SMA</strong> — institutional support</td>
+</tr>
+<tr>
+<td><strong>S4</strong></td>
+<td><strong>$168.58</strong></td>
+<td><strong>EMA 50</strong> — trend integrity</td>
+</tr>
+<tr>
+<td><strong>S5</strong></td>
+<td><strong>$166.80</strong></td>
+<td><strong>Fib 23.6%</strong> — deeper correction</td>
+</tr>
+<tr>
+<td><strong>S6</strong></td>
+<td><strong>$156.04</strong></td>
+<td><strong>Prior swing low</strong> — structure support</td>
+</tr>
+<tr>
+<td><strong>S7</strong></td>
+<td><strong>$154.69</strong></td>
+<td><strong>March 20 low</strong> — major support</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="54" data-line-end="55"><a id="Momentum_Indicators_Healthy_Reset_54"></a>📈 Momentum Indicators — Healthy Reset</h2>
+<h3 class="code-line has-line-data" data-line-start="56" data-line-end="57"><a id="MultiTimeframe_Momentum_56"></a>Multi-Timeframe Momentum</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Daily</th>
+<th>4H</th>
+<th>Weekly</th>
+<th>Signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RSI</strong></td>
+<td><strong>54.45</strong> 🟢</td>
+<td><strong>54.87</strong> 🟢</td>
+<td><strong>64.75</strong> 🟡</td>
+<td>Neutral-healthy</td>
+</tr>
+<tr>
+<td><strong>MACD</strong></td>
+<td>2.12 &gt; 1.70 ✅</td>
+<td>1.20 &lt; 1.75 ⚠️</td>
+<td>17.88 &gt; 19.13 ⚠️</td>
+<td>Mixed</td>
+</tr>
+<tr>
+<td><strong>Stochastics</strong></td>
+<td>61.9</td>
+<td><strong>33.4</strong></td>
+<td>56.6</td>
+<td>4H reset</td>
+</tr>
+<tr>
+<td><strong>CCI</strong></td>
+<td>58.6</td>
+<td><strong>-27.3</strong></td>
+<td>70.8</td>
+<td>Neutral</td>
+</tr>
+<tr>
+<td><strong>ADX</strong></td>
+<td><strong>10.3</strong> ⚠️</td>
+<td><strong>30.3</strong></td>
+<td><strong>52.3</strong></td>
+<td>Weekly strong trend</td>
+</tr>
+<tr>
+<td><strong>Awesome Osc.</strong></td>
+<td>4.66</td>
+<td>2.00</td>
+<td>38.83</td>
+<td>Bullish</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="66" data-line-end="67"><a id="Key_Observations_66"></a>Key Observations:</h3>
+<ul>
+<li class="has-line-data" data-line-start="67" data-line-end="68"><strong>RSI 54.45</strong> — Neutral, room to run. Perfect reset from overbought (was ~70+ at $206)</li>
+<li class="has-line-data" data-line-start="68" data-line-end="69"><strong>Daily ADX 10.3</strong> — <strong>Weak daily trend</strong> (consolidation phase). This is normal after a parabolic move</li>
+<li class="has-line-data" data-line-start="69" data-line-end="70"><strong>4H ADX 30.3</strong> — Strong intraday trend developing</li>
+<li class="has-line-data" data-line-start="70" data-line-end="71"><strong>Weekly ADX 52.3</strong> — <strong>Extremely strong weekly trend</strong> — the bigger picture is solid</li>
+<li class="has-line-data" data-line-start="71" data-line-end="72"><strong>MACD Daily bullish</strong> — Line above signal, positive histogram</li>
+<li class="has-line-data" data-line-start="72" data-line-end="74"><strong>Stochastics 4H at 33</strong> — Reset from overbought, room for upside</li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="76" data-line-end="77"><a id="Smart_Money_Structure_SMCICT_Analysis_76"></a>🔍 Smart Money Structure (SMC/ICT Analysis)</h2>
+<h3 class="code-line has-line-data" data-line-start="78" data-line-end="79"><a id="Market_Structure_78"></a>Market Structure</h3>
+<ul>
+<li class="has-line-data" data-line-start="79" data-line-end="80"><strong>Current Trend:</strong> <strong>Bullish</strong> — Higher Highs, Higher Lows sequence intact</li>
+<li class="has-line-data" data-line-start="80" data-line-end="81"><strong>Recent Event:</strong> <strong>Higher Low at $154.69</strong> (March 20) — confirms trend continuation</li>
+<li class="has-line-data" data-line-start="81" data-line-end="83"><strong>Structure:</strong> Clean bullish sequence since June 2025 after a <strong>Bullish CHoCH</strong> at $63.64</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="83" data-line-end="84"><a id="Order_Blocks_Institutional_Zones_83"></a>Order Blocks (Institutional Zones)</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Zone</th>
+<th>Range</th>
+<th>Status</th>
+<th>Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bullish OB 1</strong></td>
+<td>$53.70 - $57.22</td>
+<td><strong>UNTESTED</strong></td>
+<td>-68% below</td>
+</tr>
+<tr>
+<td><strong>Bullish OB 2</strong></td>
+<td>$55.90 - $57.97</td>
+<td><strong>UNTESTED</strong></td>
+<td>-67% below</td>
+</tr>
+<tr>
+<td><strong>Bullish OB 3</strong></td>
+<td>$71.25 - $76.14</td>
+<td><strong>UNTESTED</strong></td>
+<td>-57% below</td>
+</tr>
+<tr>
+<td><strong>Bullish OB 4</strong></td>
+<td>$88.01 - $92.50</td>
+<td><strong>UNTESTED</strong></td>
+<td>-48% below</td>
+</tr>
+</tbody>
+</table>
+<p class="has-line-data" data-line-start="91" data-line-end="92"><strong>Key Insight:</strong> Price has left massive bullish order blocks far below. The closest untested demand zone is $88-$92, which is 48% below current price. This confirms the move has been institutionally driven with strong accumulation.</p>
+<h3 class="code-line has-line-data" data-line-start="93" data-line-end="94"><a id="Fair_Value_Gaps_FVGs_93"></a>Fair Value Gaps (FVGs)</h3>
+<p class="has-line-data" data-line-start="94" data-line-end="95">Most historical FVGs have filled. The current structure shows <strong>no major unfilled gaps below</strong>, indicating the pullback has been orderly and organic rather than a disorderly crash.</p>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="98" data-line-end="99"><a id="Swing_Analysis_Fibonacci_Pullback_Assessment_98"></a>📉 Swing Analysis — Fibonacci &amp; Pullback Assessment</h2>
+<h3 class="code-line has-line-data" data-line-start="100" data-line-end="101"><a id="Fibonacci_Retracement_Swing_High_206_Low_15469_100"></a>Fibonacci Retracement (Swing High: $206 → Low: $154.69)</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Level</th>
+<th>Price</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0%</strong></td>
+<td>$154.69</td>
+<td>✅ Tested and held</td>
+</tr>
+<tr>
+<td><strong>23.6%</strong></td>
+<td>$166.80</td>
+<td>✅ Passed through</td>
+</tr>
+<tr>
+<td><strong>38.2%</strong></td>
+<td>$174.29</td>
+<td><strong>Current zone</strong></td>
+</tr>
+<tr>
+<td><strong>50%</strong></td>
+<td>$180.35</td>
+<td>Next resistance</td>
+</tr>
+<tr>
+<td><strong>61.8%</strong></td>
+<td>$186.40</td>
+<td><strong>Golden Pocket</strong></td>
+</tr>
+<tr>
+<td><strong>78.6%</strong></td>
+<td>$195.02</td>
+<td>Major resistance</td>
+</tr>
+<tr>
+<td><strong>100%</strong></td>
+<td>$206.00</td>
+<td>Prior ATH</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="111" data-line-end="112"><a id="Pullback_Health_Assessment_111"></a>Pullback Health Assessment</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Metric</th>
+<th>Reading</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Depth</strong></td>
+<td>24.9% retracement</td>
+<td><strong>Healthy</strong> (normal pullback)</td>
+</tr>
+<tr>
+<td><strong>Fib Zone</strong></td>
+<td>38.2%-50%</td>
+<td><strong>Ideal entry zone</strong></td>
+</tr>
+<tr>
+<td><strong>Volume</strong></td>
+<td>Light on pullback</td>
+<td>Non-climactic = healthy</td>
+</tr>
+</tbody>
+</table>
+<p class="has-line-data" data-line-start="118" data-line-end="119"><strong>Assessment:</strong> This is a <strong>textbook healthy pullback</strong> after a 55% rally ($133→$206). The 38.2% fib at $174-$175 is the classic “buy zone” in a strong uptrend.</p>
+<h3 class="code-line has-line-data" data-line-start="120" data-line-end="121"><a id="Measured_Move_Targets_120"></a>Measured Move Targets</h3>
+<p class="has-line-data" data-line-start="121" data-line-end="122">If the pullback completes and resumes the uptrend:</p>
+<ul>
+<li class="has-line-data" data-line-start="122" data-line-end="123"><strong>Conservative Target (100%):</strong> $204.65 (retest of highs)</li>
+<li class="has-line-data" data-line-start="123" data-line-end="125"><strong>Aggressive Target (161.8%):</strong> $235.53 (new ATH)</li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="127" data-line-end="128"><a id="Chart_Patterns_Divergences_127"></a>🔍 Chart Patterns &amp; Divergences</h2>
+<h3 class="code-line has-line-data" data-line-start="129" data-line-end="130"><a id="Pattern_Recognition_129"></a>Pattern Recognition:</h3>
+<ul>
+<li class="has-line-data" data-line-start="130" data-line-end="131"><strong>Higher Low at $154.69</strong> — Confirms uptrend continuation</li>
+<li class="has-line-data" data-line-start="131" data-line-end="132"><strong>Bull Flag / Consolidation</strong> — Price coiling between $174-$181</li>
+<li class="has-line-data" data-line-start="132" data-line-end="134"><strong>Volume Pattern:</strong> Declining volume on pullback = healthy consolidation (not distribution)</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="134" data-line-end="135"><a id="Divergences_134"></a>Divergences:</h3>
+<p class="has-line-data" data-line-start="135" data-line-end="136"><strong>⚠️ NO BEARISH DIVERGENCES</strong> — Price and momentum remain aligned. The RSI reset from 70+ to 54 while price only pulled back 25% — this is constructive, not destructive.</p>
+<h3 class="code-line has-line-data" data-line-start="137" data-line-end="138"><a id="Bollinger_Bands_137"></a>Bollinger Bands:</h3>
+<ul>
+<li class="has-line-data" data-line-start="138" data-line-end="139"><strong>Daily:</strong> Price at $177 vs Lower Band $156, Upper Band $186</li>
+<li class="has-line-data" data-line-start="139" data-line-end="140"><strong>4H:</strong> Price $177 vs Lower $171, Upper $183.55</li>
+<li class="has-line-data" data-line-start="140" data-line-end="142"><strong>Status:</strong> Price consolidating near 4H middle band — neutral zone</li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="144" data-line-end="145"><a id="Directional_Bias_Trade_Setup_144"></a>🎯 Directional Bias &amp; Trade Setup</h2>
+<h3 class="code-line has-line-data" data-line-start="146" data-line-end="147"><a id="Overall_Bias_BULLISH_ACCUMULATION_PHASE_146"></a>Overall Bias: <strong>BULLISH — ACCUMULATION PHASE</strong></h3>
+<p class="has-line-data" data-line-start="148" data-line-end="149"><strong>The Bull Case:</strong></p>
+<ul>
+<li class="has-line-data" data-line-start="149" data-line-end="150">Perfect MA alignment (20&gt;50&gt;100&gt;200)</li>
+<li class="has-line-data" data-line-start="150" data-line-end="151">Healthy pullback to 38.2% fib ($174) — classic buy zone</li>
+<li class="has-line-data" data-line-start="151" data-line-end="152">Weekly ADX 52.3 — extremely strong weekly trend</li>
+<li class="has-line-data" data-line-start="152" data-line-end="153">Higher Low structure intact ($154 &gt; $50 low)</li>
+<li class="has-line-data" data-line-start="153" data-line-end="154">RSI reset from overbought to neutral (54)</li>
+<li class="has-line-data" data-line-start="154" data-line-end="155">No bearish divergences</li>
+<li class="has-line-data" data-line-start="155" data-line-end="157">RS Rating 90+ — strong relative strength vs market</li>
+</ul>
+<p class="has-line-data" data-line-start="157" data-line-end="158"><strong>The Caution Case:</strong></p>
+<ul>
+<li class="has-line-data" data-line-start="158" data-line-end="159">Daily ADX weak (10.3) — consolidation could continue</li>
+<li class="has-line-data" data-line-start="159" data-line-end="160">MACD weekly showing slight bearish crossover (warning)</li>
+<li class="has-line-data" data-line-start="160" data-line-end="161">Volume light — needs conviction breakout above $181</li>
+<li class="has-line-data" data-line-start="161" data-line-end="163">52-week high at $206 is resistance</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="163" data-line-end="164"><a id="Key_Levels_to_Watch_163"></a>Key Levels to Watch</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Trigger</th>
+<th>Target</th>
+<th>Stop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Breakout Long</strong></td>
+<td>Close above $181</td>
+<td>$186-195-206</td>
+<td>Below $174</td>
+</tr>
+<tr>
+<td><strong>Range Play</strong></td>
+<td>Bounce from $174-175</td>
+<td>$180-181</td>
+<td>Below $171</td>
+</tr>
+<tr>
+<td><strong>Deeper Buy</strong></td>
+<td>Dip to $171 (50 SMA)</td>
+<td>$180-186</td>
+<td>Below $166</td>
+</tr>
+<tr>
+<td><strong>Trend Failure</strong></td>
+<td>Close below $154.69</td>
+<td>$140-130</td>
+<td>Above $175</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="172" data-line-end="173"><a id="Optimal_Entry_Zones_172"></a>Optimal Entry Zones</h3>
+<ol>
+<li class="has-line-data" data-line-start="173" data-line-end="174"><strong>Current:</strong> $174-177 zone (38.2% fib retest) — <strong>ACTIVE NOW</strong></li>
+<li class="has-line-data" data-line-start="174" data-line-end="175"><strong>Aggressive:</strong> Breakout above $181 with volume</li>
+<li class="has-line-data" data-line-start="175" data-line-end="176"><strong>Conservative:</strong> $171 (50 SMA) if we get deeper pullback</li>
+<li class="has-line-data" data-line-start="176" data-line-end="178"><strong>Deep Value:</strong> $166 (23.6% fib + EMA 50)</li>
+</ol>
+<h3 class="code-line has-line-data" data-line-start="178" data-line-end="179"><a id="Risk_Management_178"></a>Risk Management</h3>
+<ul>
+<li class="has-line-data" data-line-start="179" data-line-end="180"><strong>Position Size:</strong> Full size acceptable — trend is strong</li>
+<li class="has-line-data" data-line-start="180" data-line-end="181"><strong>Stop Loss:</strong> Below $171 (SMA 50) or $174 (today’s low)</li>
+<li class="has-line-data" data-line-start="181" data-line-end="182"><strong>Profit Targets:</strong> $186 (golden pocket), $195 (prior high), $206 (ATH)</li>
+<li class="has-line-data" data-line-start="182" data-line-end="184"><strong>Risk/Reward:</strong> 3:1 to 4:1 from current levels</li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="186" data-line-end="187"><a id="Summary_Trading_Plan_186"></a>📝 Summary &amp; Trading Plan</h2>
+<p class="has-line-data" data-line-start="188" data-line-end="189"><strong>ALB is in a healthy stage 2 uptrend consolidation.</strong> After a parabolic 55% rally to $206, the stock has pulled back 25% in an orderly fashion to the <strong>38.2% Fibonacci retracement zone ($174)</strong> — exactly where strong uptrends find support.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Factor</th>
+<th>Rating</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trend Structure</td>
+<td>⭐⭐⭐⭐⭐ Excellent</td>
+</tr>
+<tr>
+<td>Momentum</td>
+<td>⭐⭐⭐⭐ Healthy reset</td>
+</tr>
+<tr>
+<td>Risk/Reward</td>
+<td>⭐⭐⭐⭐ Good entry zone</td>
+</tr>
+<tr>
+<td>Volume Confirmation</td>
+<td>⭐⭐⭐ Awaiting breakout</td>
+</tr>
+</tbody>
+</table>
+<p class="has-line-data" data-line-start="197" data-line-end="198"><strong>Recommendation:</strong></p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>For New Positions</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ACCUMULATE</strong> at $174-177</td>
+<td>Best risk/reward zone</td>
+</tr>
+<tr>
+<td><strong>Add on breakout</strong> above $181</td>
+<td>Confirm continuation</td>
+</tr>
+<tr>
+<td><strong>Add on dip</strong> to $171</td>
+<td>Deeper support</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>For Existing Longs</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hold</strong> — trend intact</td>
+<td>Let winners run</td>
+</tr>
+<tr>
+<td><strong>Trail stops</strong> at $171 or $166</td>
+<td>Protect profits</td>
+</tr>
+<tr>
+<td><strong>Target</strong> $195-206</td>
+<td>Prior highs / new ATH</td>
+</tr>
+</tbody>
+</table>
+<p class="has-line-data" data-line-start="211" data-line-end="212"><strong>Bias:</strong> <strong>BULLISH</strong> with strong conviction. The weekly trend (ADX 52) dominates the daily consolidation. Use this pullback as an opportunity to build positions before the next leg toward $200+.</p>
+<hr>
+<p class="has-line-data" data-line-start="215" data-line-end="216">Want me to draw these Fibonacci levels and support zones on your chart, or set alerts at the key levels ($181 breakout, $171 support, $186 target)?</p>
+
+</body>
+</html>
