@@ -13,7 +13,7 @@ if os.path.exists(TIMESTAMP_FILE):
 else:
     timestamps = {}
 
-all_files = [f for f in glob.glob("*.html") if f != "index.html"]
+all_files = [f for f in glob.glob("*.html") + glob.glob("*.mhtml") if f != "index.html"]
 
 # 新檔案用當下時間記錄，舊的完全不動
 changed = False
